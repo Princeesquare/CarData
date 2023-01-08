@@ -58,27 +58,27 @@ namespace Cars
                         car_list.Columns.Add(idBox.Text);
                 }
 
-                if (mygrid.Columns.Contains(modelBox.Text) && modelBox.Checked == false) //Model CheckBox
+            if (mygrid.Columns.Contains(modelBox.Text) && modelBox.Checked == false) //Model CheckBox
+            {
+                if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                    {
-                       model.Enabled = false;
-                        car_list.Columns.Remove(modelBox.Text);
-                    }
-                    else
-                    {
-                        modelBox.Checked = true;
-                        return;
-                    }
+                    model.Enabled = false;
+                    car_list.Columns.Remove(modelBox.Text);
                 }
                 else
                 {
-                    if (mygrid.Columns.Contains(modelBox.Text) == false && modelBox.Checked)
-                    {
-                        model.Enabled = true;
-                        car_list.Columns.Add(modelBox.Text);
-                    }
+                    modelBox.Checked = true;
+                    return;
                 }
+            }
+            else
+            {
+                if (mygrid.Columns.Contains(modelBox.Text) == false && modelBox.Checked)
+                {
+                    model.Enabled = true;
+                    car_list.Columns.Add(modelBox.Text);
+                }
+            }
 
                 if (mygrid.Columns.Contains(yearBox.Text) && yearBox.Checked == false) // Year CheckBox
                 {
