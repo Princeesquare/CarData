@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label5 = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.CheckBox();
             this.modelBox = new System.Windows.Forms.CheckBox();
@@ -61,18 +60,16 @@
             this.numberof = new System.Windows.Forms.Button();
             this.remove = new System.Windows.Forms.Button();
             this.add = new System.Windows.Forms.Button();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.mygrid = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mygrid)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 22);
+            this.label5.Location = new System.Drawing.Point(11, 22);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(119, 13);
             this.label5.TabIndex = 3;
@@ -115,9 +112,9 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(15, 245);
+            this.groupBox1.Location = new System.Drawing.Point(14, 245);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(601, 64);
+            this.groupBox1.Size = new System.Drawing.Size(602, 64);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected or a New Car";
@@ -141,10 +138,11 @@
             // 
             // model
             // 
+            this.model.Enabled = false;
             this.model.Location = new System.Drawing.Point(83, 32);
             this.model.Name = "model";
             this.model.Size = new System.Drawing.Size(117, 20);
-            this.model.TabIndex = 2;
+            this.model.TabIndex = 1;
             // 
             // label2
             // 
@@ -157,10 +155,12 @@
             // 
             // year
             // 
+            this.year.Enabled = false;
             this.year.Location = new System.Drawing.Point(206, 32);
             this.year.Name = "year";
             this.year.Size = new System.Drawing.Size(66, 20);
             this.year.TabIndex = 2;
+            this.year.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.year_KeyPress);
             // 
             // label3
             // 
@@ -173,24 +173,28 @@
             // 
             // speed
             // 
+            this.speed.Enabled = false;
             this.speed.Location = new System.Drawing.Point(480, 32);
             this.speed.Name = "speed";
             this.speed.Size = new System.Drawing.Size(95, 20);
-            this.speed.TabIndex = 2;
+            this.speed.TabIndex = 5;
+            this.speed.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.speed_KeyPress);
             // 
             // color
             // 
+            this.color.Enabled = false;
             this.color.Location = new System.Drawing.Point(379, 33);
             this.color.Name = "color";
             this.color.Size = new System.Drawing.Size(95, 20);
-            this.color.TabIndex = 2;
+            this.color.TabIndex = 4;
             // 
             // gear
             // 
+            this.gear.Enabled = false;
             this.gear.Location = new System.Drawing.Point(278, 33);
             this.gear.Name = "gear";
             this.gear.Size = new System.Drawing.Size(95, 20);
-            this.gear.TabIndex = 2;
+            this.gear.TabIndex = 3;
             // 
             // label7
             // 
@@ -298,15 +302,16 @@
             this.linkLabel1.TabIndex = 7;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Visit the Website";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "BMW",
-            "Mercedes Benz",
-            "Buggati",
-            "Lamborghini",
+            "Benz",
+            "Bentley",
+            "Porsche",
             "Ferrari"});
             this.comboBox1.Location = new System.Drawing.Point(91, 201);
             this.comboBox1.Name = "comboBox1";
@@ -362,6 +367,7 @@
             this.fastest.TabIndex = 5;
             this.fastest.Text = "Find the fastest car / cars";
             this.fastest.UseVisualStyleBackColor = true;
+            this.fastest.Click += new System.EventHandler(this.fastest_Click);
             // 
             // numberof
             // 
@@ -371,6 +377,7 @@
             this.numberof.TabIndex = 2;
             this.numberof.Text = "Find the number of";
             this.numberof.UseVisualStyleBackColor = true;
+            this.numberof.Click += new System.EventHandler(this.numberof_Click);
             // 
             // remove
             // 
@@ -380,6 +387,7 @@
             this.remove.TabIndex = 1;
             this.remove.Text = "Remove the Selected Car";
             this.remove.UseVisualStyleBackColor = true;
+            this.remove.Click += new System.EventHandler(this.remove_Click);
             // 
             // add
             // 
@@ -391,21 +399,25 @@
             this.add.UseVisualStyleBackColor = true;
             this.add.Click += new System.EventHandler(this.add_Click);
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // mygrid
             // 
+            this.mygrid.AllowUserToAddRows = false;
+            this.mygrid.AllowUserToDeleteRows = false;
             this.mygrid.AllowUserToOrderColumns = true;
             this.mygrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.mygrid.Location = new System.Drawing.Point(15, 43);
+            this.mygrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.mygrid.Location = new System.Drawing.Point(14, 43);
             this.mygrid.Name = "mygrid";
-            this.mygrid.Size = new System.Drawing.Size(600, 196);
-            this.mygrid.TabIndex = 7;
+            this.mygrid.ReadOnly = true;
+            this.mygrid.RowHeadersVisible = false;
+            this.mygrid.ShowEditingIcon = false;
+            this.mygrid.Size = new System.Drawing.Size(605, 196);
+            this.mygrid.TabIndex = 0;
+            this.mygrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mygrid_CellContentClick);
             // 
             // Car
             // 
+            this.AcceptButton = this.add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 324);
@@ -427,7 +439,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mygrid)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -467,8 +478,6 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridView mygrid;
     }
 }
-
