@@ -112,9 +112,9 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(8, 245);
+            this.groupBox1.Location = new System.Drawing.Point(14, 245);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(608, 64);
+            this.groupBox1.Size = new System.Drawing.Size(602, 64);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Selected or a New Car";

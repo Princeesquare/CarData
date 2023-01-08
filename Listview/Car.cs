@@ -62,7 +62,7 @@ namespace Cars
                 {
                     if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                        model.Enabled = false;
+                      //  model.Enabled = false;
                         car_list.Columns.Remove(modelBox.Text);
                     }
                     else
@@ -98,7 +98,7 @@ namespace Cars
                     if (mygrid.Columns.Contains(yearBox.Text) == false && yearBox.Checked)
                     {
                         year.Enabled = true;
-                        car_list.Columns.Add(yearBox.Text);
+                        car_list.Columns.Add(yearBox.Text, typeof(int));
                     }
                 }
 
@@ -164,7 +164,7 @@ namespace Cars
                     if (mygrid.Columns.Contains(maxBox.Text) == false && maxBox.Checked)
                     {
                         speed.Enabled = true;
-                        car_list.Columns.Add(maxBox.Text);
+                        car_list.Columns.Add(maxBox.Text, typeof(int));
                     }
                 }
             }
@@ -183,6 +183,16 @@ namespace Cars
                     (color.Enabled = true && color.Text == "" && colorBox.Checked) ||
                     (speed.Enabled = true && speed.Text == "" && maxBox.Checked))
                     MessageBox.Show("Please Fill in the required Field.");
+
+                else if ((model.Enabled = false ||  modelBox.Checked == false) ||
+                        (year.Enabled = false || yearBox.Checked == false) ||
+                        (gear.Enabled = false || gearbox.Checked == false) ||
+                        (color.Enabled = false || colorBox.Checked == false) ||
+                        (speed.Enabled = false || maxBox.Checked == false))
+                {
+                    MessageBox.Show("Required Car Information is missing. \nPlease Select and Customize all Column Headers ");
+                    model.Enabled = true; year.Enabled = true; gear.Enabled = true; color.Enabled = true; speed.Enabled = true;
+                }
 
                 else
                 {
@@ -220,20 +230,20 @@ namespace Cars
                     ID++;
                     */
 
-
-                    car_list.Rows.Add(ID++, model.Text, year.Text, gear.Text, color.Text, speed.Text);
-                    model.Enabled = true;
-                    model.Text = "";
-                    year.Enabled = true;
-                    year.Text = "";
-                    gear.Enabled = true;
-                    gear.Text = "";
-                    color.Enabled = true;
-                    color.Text = "";
-                    speed.Enabled = true;
-                    speed.Text = "";
-                    id.Text = ID.ToString();
-
+                    
+                        car_list.Rows.Add(ID++, model.Text, year.Text, gear.Text, color.Text, speed.Text);
+                        model.Enabled = true;
+                        model.Text = "";
+                        year.Enabled = true;
+                        year.Text = "";
+                        gear.Enabled = true;
+                        gear.Text = "";
+                        color.Enabled = true;
+                        color.Text = "";
+                        speed.Enabled = true;
+                        speed.Text = "";
+                        id.Text = ID.ToString();
+                   
                     //  errorProvider1.Clear();
                     //}
 
