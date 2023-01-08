@@ -62,7 +62,7 @@ namespace Cars
                 {
                     if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
-                      //  model.Enabled = false;
+                       model.Enabled = false;
                         car_list.Columns.Remove(modelBox.Text);
                     }
                     else
