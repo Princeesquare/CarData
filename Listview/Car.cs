@@ -43,7 +43,7 @@ namespace Cars
 				modelBox.Checked == false &&
 				mygrid.Columns[1].Visible == false &&
 				yearBox.Checked == false &&
-				//mygrid.Columns[2].Visible == false &&
+				mygrid.Columns[2].Visible == false &&
 				gearbox.Checked == false &&
 				//mygrid.Columns[3].Visible == false &&
 				colorBox.Checked == false &&
@@ -68,7 +68,7 @@ namespace Cars
                     mygrid.Columns[0].DisplayIndex = 0;
                 }
 
-                if (mygrid.Columns[1].Visible = true && modelBox.Checked == false) //Model CheckBox
+                if (mygrid.Columns[1].Visible && modelBox.Checked == false) //Model CheckBox
                 {
                     if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
@@ -87,15 +87,16 @@ namespace Cars
                     {
                         model.Enabled = true;
                         mygrid.Columns[1].Visible = true;
+                        mygrid.Columns[1].DisplayIndex = 1;
                     }
                 }
-                /*
-                if (mygrid.Columns.Contains(yearBox.Text) && yearBox.Checked == false) // Year CheckBox
+
+                if (mygrid.Columns[2].Visible && yearBox.Checked == false) //Model CheckBox
                 {
-                    if (MessageBox.Show("Do you want to remove the YEAR coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         year.Enabled = false;
-                        car_list.Columns.Remove(yearBox.Text);
+                        mygrid.Columns[2].Visible = false;
                     }
                     else
                     {
@@ -105,13 +106,36 @@ namespace Cars
                 }
                 else
                 {
-                    if (mygrid.Columns.Contains(yearBox.Text) == false && yearBox.Checked)
+                    if (yearBox.Checked)
                     {
                         year.Enabled = true;
-                        car_list.Columns.Add(yearBox.Text, typeof(int));
+                        mygrid.Columns[2].Visible = true;
+                        mygrid.Columns[2].DisplayIndex = 2;
                     }
                 }
-
+                /*
+                if (mygrid.Columns[2].Visible && yearBox.Checked == false) // Year CheckBox
+                {
+                    if (MessageBox.Show("Do you want to remove the YEAR coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        year.Enabled = false;
+                        mygrid.Columns[2].Visible = false;
+                    }
+                    else
+                    {
+                        yearBox.Checked = true;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (mygrid.Columns[2].Visible = false && yearBox.Checked)
+                    {
+                        year.Enabled = true;
+                        mygrid.Columns[2].Visible = true;
+                    }
+                }
+                /*
                 if (mygrid.Columns.Contains(gearbox.Text) && gearbox.Checked == false) // GearBox checkBox 
                 {
                     if (MessageBox.Show("Do you want to remove the GEARBOX coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
