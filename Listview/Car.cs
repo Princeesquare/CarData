@@ -91,7 +91,7 @@ namespace Cars
                     }
                 }
 
-                if (mygrid.Columns[2].Visible && yearBox.Checked == false) //YEAR CheckBox
+                if (mygrid.Columns[2].Visible && yearBox.Checked == false) // CheckBox
                 {
                     if (MessageBox.Show("Do you want to remove the YEAR coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
