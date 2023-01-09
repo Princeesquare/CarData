@@ -15,7 +15,7 @@ namespace Cars
         public DataTable car_list = new DataTable();
         public int ID = 1;
 
-         BindingList<test> Carsinfo = new BindingList<info>();
+         BindingList<info> Carsinfo = new BindingList<info>();
 
         public Car()
         {
