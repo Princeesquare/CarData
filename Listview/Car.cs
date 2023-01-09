@@ -13,9 +13,9 @@ namespace Cars
     public partial class Car : Form
     {
         public DataTable car_list = new DataTable();
-        public int ID = 1;
+        public int AutoID = 1;
 
-         BindingList<info> Carsinfo = new BindingList<info>();
+        BindingList<info> Carsinfo = new BindingList<info>();
 
         public Car()
         {
@@ -24,29 +24,38 @@ namespace Cars
 
         private void Car_Load_1(object sender, EventArgs e)
         {
-            id.Text = ID.ToString();
+            id.Text = AutoID.ToString();
             mygrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             mygrid.MultiSelect = false;
-            mygrid.DataSource = car_list;
+            mygrid.DataSource = Carsinfo;
+            mygrid.Columns[0].Visible = false;
+            mygrid.Columns[1].Visible = false;
+            mygrid.Columns[2].Visible = false;
+            mygrid.Columns[3].Visible = false;
+            mygrid.Columns[4].Visible = false;
+            mygrid.Columns[5].Visible = false;
         }
 
         private void customize_Click(object sender, EventArgs e) // CUSTOMIZE BUTTON
         {
             if (idBox.Checked &&
-                        modelBox.Checked == false &&
-                        mygrid.Columns.Contains(modelBox.Text) == false &&
-                        yearBox.Checked == false &&
-                        mygrid.Columns.Contains(yearBox.Text) == false &&
-                        gearbox.Checked == false &&
-                        mygrid.Columns.Contains(gearbox.Text) == false &&
-                        colorBox.Checked == false &&
-                        mygrid.Columns.Contains(colorBox.Text) == false &&
-                        maxBox.Checked == false &&
-                        mygrid.Columns.Contains(maxBox.Text) == false)
+				//mygrid.Columns[0].Visible == false &&
+				modelBox.Checked == false &&
+				mygrid.Columns[1].Visible == false &&
+				yearBox.Checked == false &&
+				//mygrid.Columns[2].Visible == false &&
+				gearbox.Checked == false &&
+				//mygrid.Columns[3].Visible == false &&
+				colorBox.Checked == false &&
+				//mygrid.Columns[4].Visible == false &&
+				maxBox.Checked == false //&&
+				//mygrid.Columns[5].Visible == false
+                )
                 MessageBox.Show("Please Select a Column Header and Click on Customize.");
+
             else
             {
-                if (mygrid.Columns.Contains(idBox.Text) && idBox.Checked == false) //ID CheckBox
+                if (mygrid.Columns[0].Visible = true && idBox.Checked == false) //ID CheckBox
                 {
                     MessageBox.Show("ID Column is required", "WARNING", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     idBox.Checked = true;
@@ -54,32 +63,33 @@ namespace Cars
                 }
                 else
                 {
-                    if (mygrid.Columns.Contains(idBox.Text) == false && idBox.Checked)
-                        car_list.Columns.Add(idBox.Text);
+                    if (idBox.Checked)
+                        mygrid.Columns[0].Visible = true;
+                    mygrid.Columns[0].DisplayIndex = 0;
                 }
 
-            if (mygrid.Columns.Contains(modelBox.Text) && modelBox.Checked == false) //Model CheckBox
-            {
-                if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (mygrid.Columns[1].Visible = true && modelBox.Checked == false) //Model CheckBox
                 {
-                    model.Enabled = false;
-                    car_list.Columns.Remove(modelBox.Text);
+                    if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        model.Enabled = false;
+                        mygrid.Columns[1].Visible = false;
+                    }
+                    else
+                    {
+                        modelBox.Checked = true;
+                        return;
+                    }
                 }
                 else
                 {
-                    modelBox.Checked = true;
-                    return;
+                    if (modelBox.Checked)
+                    {
+                        model.Enabled = true;
+                        mygrid.Columns[1].Visible = true;
+                    }
                 }
-            }
-            else
-            {
-                if (mygrid.Columns.Contains(modelBox.Text) == false && modelBox.Checked)
-                {
-                    model.Enabled = true;
-                    car_list.Columns.Add(modelBox.Text);
-                }
-            }
-
+                /*
                 if (mygrid.Columns.Contains(yearBox.Text) && yearBox.Checked == false) // Year CheckBox
                 {
                     if (MessageBox.Show("Do you want to remove the YEAR coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -166,7 +176,7 @@ namespace Cars
                         speed.Enabled = true;
                         car_list.Columns.Add(maxBox.Text, typeof(int));
                     }
-                }
+                }*/
             }
         }
 
@@ -184,7 +194,7 @@ namespace Cars
                     (speed.Enabled = true && speed.Text == "" && maxBox.Checked))
                     MessageBox.Show("Please Fill in the required Field.");
 
-                else if ((model.Enabled = false ||  modelBox.Checked == false) ||
+                else if ((model.Enabled = false || modelBox.Checked == false) ||
                         (year.Enabled = false || yearBox.Checked == false) ||
                         (gear.Enabled = false || gearbox.Checked == false) ||
                         (color.Enabled = false || colorBox.Checked == false) ||
@@ -205,45 +215,45 @@ namespace Cars
                     else
                     {
                     */
-                    /*
+
                     for (int i = 0; i < Carsinfo.Count; i++)
                     {
-                        if (model.Text == Carsinfo[i].Model && 
-                            year.Text == Carsinfo[i].Year &&
+                        if (model.Text == Carsinfo[i].Model &&
+                            year.Text == (Carsinfo[i].Year).ToString() &&
                             gear.Text == Carsinfo[i].Gear &&
                             color.Text == Carsinfo[i].Color &&
-                            speed.Text == Carsinfo[i].MaxSpeed)
+                            speed.Text == Carsinfo[i].MaxSpeed.ToString())
                         {
                             MessageBox.Show("Car already Exist"); return;
                         }
                     }
 
-                    Cars.Add(new item
+                    Carsinfo.Add(new info
                     {
-                        id = ID,
+                        ID = AutoID,
                         Model = model.Text,
-                        Year = year.Text,
+                        Year = int.Parse(year.Text),
                         Gear = gear.Text,
-                        Color =  color.Text,
-                        MaxSpeed = speed.Text
+                        Color = color.Text,
+                        MaxSpeed = int.Parse(speed.Text)
                     });
-                    ID++;
-                    */
+                    AutoID++;
 
-                    
-                        car_list.Rows.Add(ID++, model.Text, year.Text, gear.Text, color.Text, speed.Text);
-                        model.Enabled = true;
-                        model.Text = "";
-                        year.Enabled = true;
-                        year.Text = "";
-                        gear.Enabled = true;
-                        gear.Text = "";
-                        color.Enabled = true;
-                        color.Text = "";
-                        speed.Enabled = true;
-                        speed.Text = "";
-                        id.Text = ID.ToString();
-                   
+
+
+                    //car_list.Rows.Add(ID++, model.Text, year.Text, gear.Text, color.Text, speed.Text);
+                    model.Enabled = true;
+                    model.Text = "";
+                    year.Enabled = true;
+                    year.Text = "";
+                    gear.Enabled = true;
+                    gear.Text = "";
+                    color.Enabled = true;
+                    color.Text = "";
+                    speed.Enabled = true;
+                    speed.Text = "";
+                    id.Text = AutoID.ToString();
+
                     //  errorProvider1.Clear();
                     //}
 
@@ -305,16 +315,17 @@ namespace Cars
         {
 
             if (MessageBox.Show("Are you Sure You Want To Remove The Selected Row?", "Warning!!",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) MessageBox.Show("Deleted");
-            /* {
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+             {
                  int index = int.Parse(mygrid.SelectedCells[0].Value.ToString()) - 1;
                  Carsinfo.RemoveAt(index);
                  for (int i = index; i < Carsinfo.Count; i++)
-                     Carsinfo[i].id--;
-                 ID--;
-             }
+                     Carsinfo[i].ID--;
+                 AutoID--;
+                MessageBox.Show("Item Deleted Successfully");
+            }
              else
-                 return;*/
+                 return;
         }
 
         private void numberof_Click(object sender, EventArgs e)
@@ -323,7 +334,7 @@ namespace Cars
                 MessageBox.Show("Select a Car Gear Type.");
             else
             {
-                /*  int cnt = 0;
+                  int cnt = 0;
                   if(manual.Checked)
                   {
                       for (int i = 0; i < Carsinfo.Count; i++)
@@ -334,12 +345,12 @@ namespace Cars
                   }
                   else
                   {
-                      for (int i = 0; i < Carinfo.Count; i++)
+                      for (int i = 0; i < Carsinfo.Count; i++)
                       {
                           if (Carsinfo[i].Gear == "Automatic" || Carsinfo[i].Gear == "automatic") cnt++;
                       }
                       MessageBox.Show("There are " + cnt + "number of Automatic Cars");
-                  }*/
+                  }
             }
         }
 
@@ -363,16 +374,16 @@ namespace Cars
 
         private void fastest_Click(object sender, EventArgs e)
         {
-            /* int Max = 0;
+             int Max = 0;
              for (int i = 0; i < Carsinfo.Count; i++)
              {
-                 if (Max > Carsinfo[i].MaxSpeed.Value)
+                if (Max > Carsinfo[i].MaxSpeed)
                  {
                      Max = i;
                      MessageBox.Show("The Fastest Car is: " + Carsinfo[i].Model + " at a speed of " + Max + "km/h");
                  }
              }
-             */
+             
         }
 
         private void mygrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
