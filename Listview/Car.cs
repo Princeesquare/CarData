@@ -44,7 +44,7 @@ namespace Cars
 				mygrid.Columns[1].Visible == false &&
 				yearBox.Checked == false &&
 				mygrid.Columns[2].Visible == false &&
-				gearbox.Checked == false &&
+				gearBox.Checked == false &&
 				//mygrid.Columns[3].Visible == false &&
 				colorBox.Checked == false &&
 				//mygrid.Columns[4].Visible == false &&
@@ -91,9 +91,9 @@ namespace Cars
                     }
                 }
 
-                if (mygrid.Columns[2].Visible && yearBox.Checked == false) //Model CheckBox
+                if (mygrid.Columns[2].Visible && yearBox.Checked == false) //YEAR CheckBox
                 {
-                    if (MessageBox.Show("Do you want to remove the MODEL coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    if (MessageBox.Show("Do you want to remove the YEAR coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         year.Enabled = false;
                         mygrid.Columns[2].Visible = false;
@@ -111,6 +111,29 @@ namespace Cars
                         year.Enabled = true;
                         mygrid.Columns[2].Visible = true;
                         mygrid.Columns[2].DisplayIndex = 2;
+                    }
+                }
+
+                if (mygrid.Columns[3].Visible && gearBox.Checked == false) //GEAR CheckBox
+                {
+                    if (MessageBox.Show("Do you want to remove the GEAR coulmn?", "WARNING", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                    {
+                        gear.Enabled = false;
+                        mygrid.Columns[3].Visible = false;
+                    }
+                    else
+                    {
+                        gearBox.Checked = true;
+                        return;
+                    }
+                }
+                else
+                {
+                    if (gearBox.Checked)
+                    {
+                        gear.Enabled = true;
+                        mygrid.Columns[3].Visible = true;
+                        mygrid.Columns[3].DisplayIndex = 3;
                     }
                 }
                 /*
@@ -213,14 +236,14 @@ namespace Cars
             {
                 if ((model.Enabled = true && model.Text == "" && modelBox.Checked) ||
                     (year.Enabled = true && year.Text == "" && yearBox.Checked) ||
-                    (gear.Enabled = true && gear.Text == "" && gearbox.Checked) ||
+                    (gear.Enabled = true && gear.Text == "" && gearBox.Checked) ||
                     (color.Enabled = true && color.Text == "" && colorBox.Checked) ||
                     (speed.Enabled = true && speed.Text == "" && maxBox.Checked))
                     MessageBox.Show("Please Fill in the required Field.");
 
                 else if ((model.Enabled = false || modelBox.Checked == false) ||
                         (year.Enabled = false || yearBox.Checked == false) ||
-                        (gear.Enabled = false || gearbox.Checked == false) ||
+                        (gear.Enabled = false || gearBox.Checked == false) ||
                         (color.Enabled = false || colorBox.Checked == false) ||
                         (speed.Enabled = false || maxBox.Checked == false))
                 {

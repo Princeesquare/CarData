@@ -46,7 +46,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.customize = new System.Windows.Forms.Button();
             this.yearBox = new System.Windows.Forms.CheckBox();
-            this.gearbox = new System.Windows.Forms.CheckBox();
+            this.gearBox = new System.Windows.Forms.CheckBox();
             this.colorBox = new System.Windows.Forms.CheckBox();
             this.maxBox = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -139,7 +139,7 @@
             // model
             // 
             this.model.Enabled = false;
-            this.model.Location = new System.Drawing.Point(83, 32);
+            this.model.Location = new System.Drawing.Point(83, 33);
             this.model.Name = "model";
             this.model.Size = new System.Drawing.Size(117, 20);
             this.model.TabIndex = 1;
@@ -156,7 +156,7 @@
             // year
             // 
             this.year.Enabled = false;
-            this.year.Location = new System.Drawing.Point(206, 32);
+            this.year.Location = new System.Drawing.Point(206, 33);
             this.year.Name = "year";
             this.year.Size = new System.Drawing.Size(66, 20);
             this.year.TabIndex = 2;
@@ -243,20 +243,20 @@
             this.yearBox.Text = "Year";
             this.yearBox.UseVisualStyleBackColor = true;
             // 
-            // gearbox
+            // gearBox
             // 
-            this.gearbox.AutoSize = true;
-            this.gearbox.Location = new System.Drawing.Point(293, 21);
-            this.gearbox.Name = "gearbox";
-            this.gearbox.Size = new System.Drawing.Size(67, 17);
-            this.gearbox.TabIndex = 4;
-            this.gearbox.Text = "GearBox";
-            this.gearbox.UseVisualStyleBackColor = true;
+            this.gearBox.AutoSize = true;
+            this.gearBox.Location = new System.Drawing.Point(293, 21);
+            this.gearBox.Name = "gearBox";
+            this.gearBox.Size = new System.Drawing.Size(67, 17);
+            this.gearBox.TabIndex = 4;
+            this.gearBox.Text = "GearBox";
+            this.gearBox.UseVisualStyleBackColor = true;
             // 
             // colorBox
             // 
             this.colorBox.AutoSize = true;
-            this.colorBox.Location = new System.Drawing.Point(358, 21);
+            this.colorBox.Location = new System.Drawing.Point(362, 21);
             this.colorBox.Name = "colorBox";
             this.colorBox.Size = new System.Drawing.Size(50, 17);
             this.colorBox.TabIndex = 4;
@@ -424,7 +424,7 @@
             this.Controls.Add(this.mygrid);
             this.Controls.Add(this.maxBox);
             this.Controls.Add(this.colorBox);
-            this.Controls.Add(this.gearbox);
+            this.Controls.Add(this.gearBox);
             this.Controls.Add(this.modelBox);
             this.Controls.Add(this.yearBox);
             this.Controls.Add(this.idBox);
@@ -464,7 +464,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button customize;
         private System.Windows.Forms.CheckBox yearBox;
-        private System.Windows.Forms.CheckBox gearbox;
+        private System.Windows.Forms.CheckBox gearBox;
         private System.Windows.Forms.CheckBox colorBox;
         private System.Windows.Forms.CheckBox maxBox;
         private System.Windows.Forms.GroupBox groupBox2;
