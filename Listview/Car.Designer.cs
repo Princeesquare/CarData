@@ -33,6 +33,7 @@
             this.modelBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.gearcombobox = new System.Windows.Forms.ComboBox();
             this.id = new System.Windows.Forms.TextBox();
             this.model = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@
             this.remove = new System.Windows.Forms.Button();
             this.add = new System.Windows.Forms.Button();
             this.mygrid = new System.Windows.Forms.DataGridView();
-            this.gearcombobox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mygrid)).BeginInit();
@@ -127,6 +127,18 @@
             this.label1.Size = new System.Drawing.Size(24, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "ID: ";
+            // 
+            // gearcombobox
+            // 
+            this.gearcombobox.FormattingEnabled = true;
+            this.gearcombobox.Items.AddRange(new object[] {
+            "Automatic",
+            "Manual"});
+            this.gearcombobox.Location = new System.Drawing.Point(278, 33);
+            this.gearcombobox.Name = "gearcombobox";
+            this.gearcombobox.Size = new System.Drawing.Size(95, 21);
+            this.gearcombobox.TabIndex = 6;
+            this.gearcombobox.Text = "Select";
             // 
             // id
             // 
@@ -407,18 +419,6 @@
             this.mygrid.Size = new System.Drawing.Size(605, 196);
             this.mygrid.TabIndex = 0;
             this.mygrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mygrid_CellContentClick);
-            // 
-            // gearcombobox
-            // 
-            this.gearcombobox.FormattingEnabled = true;
-            this.gearcombobox.Items.AddRange(new object[] {
-            "Automatic",
-            "Manual"});
-            this.gearcombobox.Location = new System.Drawing.Point(278, 33);
-            this.gearcombobox.Name = "gearcombobox";
-            this.gearcombobox.Size = new System.Drawing.Size(95, 21);
-            this.gearcombobox.TabIndex = 6;
-            this.gearcombobox.Text = "Select";
             // 
             // Car
             // 

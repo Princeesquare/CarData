@@ -187,7 +187,7 @@ namespace Cars
         // ADD BUTTON //
         private void add_Click(object sender, EventArgs e)
         {
-            int Cyear = DateTime.Now.Year ;
+
 
             if (mygrid.Columns[0].Visible == false) MessageBox.Show("Data Column Header is empty\nPlease select a columns and click CUSTOMIZE!!");
 
@@ -200,36 +200,27 @@ namespace Cars
                     (speed.Enabled = true && speed.Text == "" && maxBox.Checked))
                     MessageBox.Show("Please Fill Required Fields.");
 
+
                 else
                 {
-                   // if (int.Parse(year.Text) > 1900 || int.Parse(year.Text) < Cyear || int.Parse(speed.Text) > 0)
-                    //{
-                        Carsinfo.Add(new info
-                        {
-                            ID = AutoID,
-                            Model = model.Text,
-                            Year = year.Text,
-                            Gear = gearcombobox.Text,
-                            Color = color.Text,
-                            MaxSpeed = speed.Text
-                        });
-                        AutoID++;
+                    Carsinfo.Add(new info
+                    {
+                        ID = AutoID,
+                        Model = model.Text,
+                        Year = year.Text,
+                        Gear = gearcombobox.Text,
+                        Color = color.Text,
+                        MaxSpeed = speed.Text
+                    });
+                    AutoID++;
 
-                        model.Text = ""; model.Enabled = true;
-                        year.Text = ""; year.Enabled = true;
-                        gearcombobox.Text = "Select"; gearcombobox.Enabled = true;
-                        color.Text = ""; color.Enabled = true;
-                        speed.Text = ""; speed.Enabled = true;
-                        id.Text = AutoID.ToString();
-                   /* }
-                    else if(int.Parse(year.Text) < 1900 )
-                        MessageBox.Show("Year cannot be less than 1900");
-                    else if (int.Parse(year.Text) > Cyear)
-                        MessageBox.Show("Year cannot be greater than " + Cyear);
-                    else
-                        MessageBox.Show("Car Speed cannot be less than 0");
-                  */
-                   
+                    model.Text = ""; model.Enabled = true;
+                    year.Text = ""; year.Enabled = true;
+                    gearcombobox.Text = "Select"; gearcombobox.Enabled = true;
+                    color.Text = ""; color.Enabled = true;
+                    speed.Text = ""; speed.Enabled = true;
+                    id.Text = AutoID.ToString();
+
                 }
             }
         }
