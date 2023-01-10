@@ -200,9 +200,18 @@ namespace Cars
                     (speed.Enabled = true && speed.Text == "" && maxBox.Checked))
                     MessageBox.Show("Please Fill Required Fields.");
 
+               // else if (!year.Enabled && yearBox.Checked == false)
+                //    year.Text = "";
+                //else if (year.Enabled)
+               // {
+               //     if (int.Parse(year.Text) < 1900)
+               //         MessageBox.Show("Car Year should not be less than 1900");
+               // }
 
                 else
                 {
+                    if (!year.Enabled)
+                        year.Text = "";
                     Carsinfo.Add(new info
                     {
                         ID = AutoID,
