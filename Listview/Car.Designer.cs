@@ -40,7 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.speed = new System.Windows.Forms.TextBox();
             this.color = new System.Windows.Forms.TextBox();
-            this.gear = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -61,6 +60,7 @@
             this.remove = new System.Windows.Forms.Button();
             this.add = new System.Windows.Forms.Button();
             this.mygrid = new System.Windows.Forms.DataGridView();
+            this.gearcombobox = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mygrid)).BeginInit();
@@ -101,6 +101,7 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.LightGray;
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.gearcombobox);
             this.groupBox1.Controls.Add(this.id);
             this.groupBox1.Controls.Add(this.model);
             this.groupBox1.Controls.Add(this.label2);
@@ -108,7 +109,6 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.speed);
             this.groupBox1.Controls.Add(this.color);
-            this.groupBox1.Controls.Add(this.gear);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label4);
@@ -187,14 +187,6 @@
             this.color.Name = "color";
             this.color.Size = new System.Drawing.Size(95, 20);
             this.color.TabIndex = 4;
-            // 
-            // gear
-            // 
-            this.gear.Enabled = false;
-            this.gear.Location = new System.Drawing.Point(278, 33);
-            this.gear.Name = "gear";
-            this.gear.Size = new System.Drawing.Size(95, 20);
-            this.gear.TabIndex = 3;
             // 
             // label7
             // 
@@ -401,9 +393,10 @@
             // 
             // mygrid
             // 
-            this.mygrid.AllowUserToAddRows = false;
             this.mygrid.AllowUserToDeleteRows = false;
             this.mygrid.AllowUserToOrderColumns = true;
+            this.mygrid.AllowUserToResizeColumns = false;
+            this.mygrid.AllowUserToResizeRows = false;
             this.mygrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mygrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.mygrid.Location = new System.Drawing.Point(14, 43);
@@ -414,6 +407,18 @@
             this.mygrid.Size = new System.Drawing.Size(605, 196);
             this.mygrid.TabIndex = 0;
             this.mygrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mygrid_CellContentClick);
+            // 
+            // gearcombobox
+            // 
+            this.gearcombobox.FormattingEnabled = true;
+            this.gearcombobox.Items.AddRange(new object[] {
+            "Automatic",
+            "Manual"});
+            this.gearcombobox.Location = new System.Drawing.Point(278, 33);
+            this.gearcombobox.Name = "gearcombobox";
+            this.gearcombobox.Size = new System.Drawing.Size(95, 21);
+            this.gearcombobox.TabIndex = 6;
+            this.gearcombobox.Text = "Select";
             // 
             // Car
             // 
@@ -458,7 +463,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox speed;
         private System.Windows.Forms.TextBox color;
-        private System.Windows.Forms.TextBox gear;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -479,5 +483,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView mygrid;
+        private System.Windows.Forms.ComboBox gearcombobox;
     }
 }
