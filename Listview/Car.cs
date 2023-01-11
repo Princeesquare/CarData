@@ -36,20 +36,14 @@ namespace Cars
         }
 
         // CUSTOMIZE BUTTON  //
-        private void customize_Click(object sender, EventArgs e) 
+        private void customize_Click(object sender, EventArgs e)
         {
-            if (idBox.Checked &&				
-				modelBox.Checked == false &&
-				
-				yearBox.Checked == false &&
-				
-				gearBox.Checked == false &&
-				
-				colorBox.Checked == false &&
-			
-				maxBox.Checked == false
-				
-                )
+            if (idBox.Checked &&
+                modelBox.Checked == false &&
+                yearBox.Checked == false &&
+                gearBox.Checked == false &&
+                colorBox.Checked == false &&
+                maxBox.Checked == false)
                 MessageBox.Show("Please Select a Column Header and Click on Customize.");
 
             else
@@ -180,7 +174,7 @@ namespace Cars
                         mygrid.Columns[5].Visible = true;
                         mygrid.Columns[5].DisplayIndex = 5;
                     }
-                }
+                }                
             }
         }
 
@@ -188,100 +182,136 @@ namespace Cars
         private void add_Click(object sender, EventArgs e)
         {
 
-
-            if (mygrid.Columns[0].Visible == false) MessageBox.Show("Data Column Header is empty\nPlease select a columns and click CUSTOMIZE!!");
-
+            if (mygrid.Columns[0].Visible == false)
+                MessageBox.Show("Data Column Header is empty\nPlease select a columns and click CUSTOMIZE!!");
+            
             else
             {
-                if ((model.Enabled = true && model.Text == "" && modelBox.Checked) ||
-                    (year.Enabled = true && year.Text == "" && yearBox.Checked) ||
-                    (gearcombobox.Enabled = true && gearcombobox.Text == "Select" && gearBox.Checked) ||
-                    (color.Enabled = true && color.Text == "" && colorBox.Checked) ||
-                    (speed.Enabled = true && speed.Text == "" && maxBox.Checked))
-                    MessageBox.Show("Please Fill Required Fields.");
-
-               // else if (!year.Enabled && yearBox.Checked == false)
-                //    year.Text = "";
-                //else if (year.Enabled)
-               // {
-               //     if (int.Parse(year.Text) < 1900)
-               //         MessageBox.Show("Car Year should not be less than 1900");
-               // }
-
+                for (int i = 0; i < Carsinfo.Count; i++)
+                    if (model.Text == Carsinfo[i].Model &&
+                        year.Text == Carsinfo[i].Year &&
+                        gearcombobox.Text == Carsinfo[i].Gear &&
+                        color.Text == Carsinfo[i].Color &&
+                        speed.Text == Carsinfo[i].MaxSpeed)
+                    {
+                        MessageBox.Show("Car Already Exists");
+                        return;
+                    }
+                if (year.Enabled == false)
+                    MessageBox.Show("Car Year Column is Required\nPlease Add Year Column to Continue");
                 else
                 {
-                    if (!year.Enabled)
-                        year.Text = "";
-                    Carsinfo.Add(new info
+                    if ((model.Enabled = true && model.Text == "" && modelBox.Checked) ||
+                                (year.Enabled = true && year.Text == "" && yearBox.Checked) ||
+                                (gearcombobox.Enabled = true && gearcombobox.Text == "Select" && gearBox.Checked) ||
+                                (color.Enabled = true && color.Text == "" && colorBox.Checked) ||
+                                (speed.Enabled = true && speed.Text == "" && maxBox.Checked))
+                        MessageBox.Show("Please Fill All Open Fields.");
+                    else
                     {
-                        ID = AutoID,
-                        Model = model.Text,
-                        Year = year.Text,
-                        Gear = gearcombobox.Text,
-                        Color = color.Text,
-                        MaxSpeed = speed.Text
-                    });
-                    AutoID++;
-
-                    model.Text = ""; model.Enabled = true;
-                    year.Text = ""; year.Enabled = true;
-                    gearcombobox.Text = "Select"; gearcombobox.Enabled = true;
-                    color.Text = ""; color.Enabled = true;
-                    speed.Text = ""; speed.Enabled = true;
-                    id.Text = AutoID.ToString();
-
+                        if (int.Parse(year.Text) >= 1900 && int.Parse(year.Text) <= DateTime.Now.Year && 
+                            int.Parse(speed.Text) >= 10 && int.Parse(speed.Text) <= 500)
+                        {
+                            Carsinfo.Add(new info
+                            {
+                                ID = AutoID,
+                                Model = model.Text,
+                                Year = year.Text,
+                                Gear = gearcombobox.Text,
+                                Color = color.Text,
+                                MaxSpeed = speed.Text
+                            });
+                            AutoID++;
+                            model.Text = "";
+                            year.Text = "";
+                            gearcombobox.Text = "Select";
+                            color.Text = "";
+                            speed.Text = "";
+                            model.Enabled = true;
+                            year.Enabled = true; speed.Enabled = true;
+                            gearcombobox.Enabled = true; color.Enabled = true;
+                            id.Text = AutoID.ToString();
+                        }
+                        else
+                            MessageBox.Show("Car Year should not be less than 1900 or Greater than " + DateTime.Now.Year +
+                               "\nMax_Speed should not be less than 10Km/hr or greater than 500Km/hr" );
+                        model.Enabled = true;
+                        year.Enabled = true; speed.Enabled = true;
+                        gearcombobox.Enabled = true; color.Enabled = true;
+                    }
                 }
             }
         }
-
+  
         // REMOVE BUTTON //
         private void remove_Click(object sender, EventArgs e)
         {
             if (Carsinfo.Count == 0)
-            {
-                MessageBox.Show("There is Car Available in The List");
-            }
-            if (MessageBox.Show("Are you Sure You Want To Remove The Selected Car?", "Warning!!",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-             {
-                 int index = int.Parse(mygrid.SelectedCells[0].Value.ToString()) - 1;
-                 Carsinfo.RemoveAt(index);
-                 for (int i = index; i < Carsinfo.Count; i++)
-                     Carsinfo[i].ID--;
-                 AutoID--;
-                MessageBox.Show("Item Deleted Successfully");
-            }
-             else
-                 return;
-            id.Text = AutoID.ToString();
-        }
-
-        private void numberof_Click(object sender, EventArgs e)
-        {
-            if (!manual.Checked && !automatic.Checked)
-                MessageBox.Show("Select a Gear Type.");
+                MessageBox.Show("There is NO Car in The List");
             else
             {
-                  int cnt = 0;
-                  if(manual.Checked)
-                  {
-                      for (int i = 0; i < Carsinfo.Count; i++)
-                      {
-                          if (Carsinfo[i].Gear == "Manual") cnt++;
-                      }
-                      MessageBox.Show("There are " + cnt + " Manual Cars");
-                  }
-                  else
-                  {
-                      for (int i = 0; i < Carsinfo.Count; i++)
-                      {
-                          if (Carsinfo[i].Gear == "Automatic") cnt++;
-                      }
-                      MessageBox.Show("There are " + cnt + " Automatic Cars");
-                  }
+                if (MessageBox.Show("Are you Sure You Want To Remove The Selected Car?", "Warning!!",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    int index = int.Parse(mygrid.SelectedCells[0].Value.ToString()) - 1;
+                    Carsinfo.RemoveAt(index);
+                    for (int i = index; i < Carsinfo.Count; i++)
+                        Carsinfo[i].ID--;
+                    AutoID--;
+                    MessageBox.Show("Item Deleted Successfully");
+                }
+                else
+                    return;
+                id.Text = AutoID.ToString();
             }
         }
-
+        // FINDING NUMBER OF GEARTYPE BUTTON //
+        private void numberof_Click(object sender, EventArgs e)
+        {
+            string carname = "";
+            if (Carsinfo.Count == 0)
+                MessageBox.Show("There is NO Car in The List");
+            else
+            {
+                if (!manual.Checked && !automatic.Checked)
+                    MessageBox.Show("Select a Gear Type.");
+                else
+                {
+                    int cnt = 0;
+                    if (manual.Checked)
+                    {
+                        for (int i = 0; i < Carsinfo.Count; i++)
+                        {
+                            if (Carsinfo[i].Gear == "Manual")
+                            {
+                                carname = Carsinfo[i].Model;
+                                cnt++;
+                            }
+                        }
+                        if (cnt == 1)
+                            MessageBox.Show("There is only " + cnt + " Manual Car in the list: " + carname);
+                        else
+                            MessageBox.Show("There are " + cnt + " Manual Cars");
+                    }
+                    else
+                    {
+                        for (int i = 0; i < Carsinfo.Count; i++)
+                        {
+                            if (Carsinfo[i].Gear == "Automatic")
+                            {
+                                carname = Carsinfo[i].Model;
+                                cnt++;
+                            }
+                        }
+                        if (cnt == 1)
+                            MessageBox.Show("There is only " + cnt + " Automatic Car in the list: " + carname);
+                        else
+                            MessageBox.Show("There are " + cnt + " Automatic Cars");
+                    }
+                }
+            }
+        }
+        // YEAR TEXTBOX KEYPRESS HANDLING //
         private void year_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != (char)Keys.Back)
@@ -290,7 +320,7 @@ namespace Cars
                 MessageBox.Show("Please Enter Only Digits");
             }
         }
-
+        // MAX_SPEED TEXTBOX KEYPRESS HANDLING //
         private void speed_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsNumber(e.KeyChar) && e.KeyChar != (char)Keys.Back)
@@ -299,18 +329,16 @@ namespace Cars
                 MessageBox.Show("Please Enter Only Digits");
             }
         }
-
+        // FINDING FASTEST CAR BUTTON//
         private void fastest_Click(object sender, EventArgs e)
         {
             if (Carsinfo.Count == 0)
-            {
-                MessageBox.Show("There is No Car in The List");
-            }
+                MessageBox.Show("There is No Car In The List");
             else
             {
-                
                 int Max = 0;
                 String Name = "";
+                
                 for (int i = 0; i < Carsinfo.Count; i++)
                 {
                     if (int.Parse(Carsinfo[i].MaxSpeed) > Max)
@@ -319,7 +347,9 @@ namespace Cars
                         Name = Carsinfo[i].Model;
                     }
                 }    
-                MessageBox.Show("The Fastest car is " + Name + " with a speed of " + Max + "Km/h");
+                MessageBox.Show(Name + " is the fastest car with a speed of " + Max + "Km/h");
+                
+                
             }
         }
 
@@ -343,13 +373,16 @@ namespace Cars
                 MessageBox.Show(ex.Message);
             }
         }
-
+        // LINK LABEL //
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (comboBox1.Text == "Select")
                 MessageBox.Show("Please Select a Brand");
             else
             {
+                if (comboBox1.Text != comboBox1.Items.ToString())
+                       MessageBox.Show("Please Select a Brand from the  DropDown Menu.");
+               
                 if (comboBox1.Text == "BMW")
                     System.Diagnostics.Process.Start("https://www.bmw.com.cy/en/all-models.html?tl=grp-wdpl-bcom-mix-mn-.-nscf-.-.-");
                 if (comboBox1.Text == "Benz")

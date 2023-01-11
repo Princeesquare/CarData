@@ -130,6 +130,7 @@
             // 
             // gearcombobox
             // 
+            this.gearcombobox.Enabled = false;
             this.gearcombobox.FormattingEnabled = true;
             this.gearcombobox.Items.AddRange(new object[] {
             "Automatic",
@@ -137,7 +138,7 @@
             this.gearcombobox.Location = new System.Drawing.Point(278, 33);
             this.gearcombobox.Name = "gearcombobox";
             this.gearcombobox.Size = new System.Drawing.Size(95, 21);
-            this.gearcombobox.TabIndex = 6;
+            this.gearcombobox.TabIndex = 3;
             this.gearcombobox.Text = "Select";
             // 
             // id
@@ -426,7 +427,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 324);
-            this.Controls.Add(this.mygrid);
             this.Controls.Add(this.maxBox);
             this.Controls.Add(this.colorBox);
             this.Controls.Add(this.gearBox);
@@ -437,8 +437,9 @@
             this.Controls.Add(this.customize);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.mygrid);
             this.Name = "Car";
-            this.Text = "Cars Data";
+            this.Text = "CarData_22013993 EZENWA EMMANUEL";
             this.Load += new System.EventHandler(this.Car_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
