@@ -33,6 +33,7 @@ namespace Cars
             mygrid.Columns[3].Visible = false;
             mygrid.Columns[4].Visible = false;
             mygrid.Columns[5].Visible = false;
+            MessageBox.Show("Welcome To Prince Esquare Tech.\nEZENWA EMMANUEL 22013993", "22013993", MessageBoxButtons.OK);
         }
 
         // CUSTOMIZE BUTTON  //
@@ -235,7 +236,7 @@ namespace Cars
                         else
                             MessageBox.Show("Car Year should not be less than 1900 or Greater than " + DateTime.Now.Year +
                                "\nMax_Speed should not be less than 10Km/hr or greater than 500Km/hr" );
-                        model.Enabled = true;
+                        model.Enabled = true; model.Focus();
                         year.Enabled = true; speed.Enabled = true;
                         gearcombobox.Enabled = true; color.Enabled = true;
                     }

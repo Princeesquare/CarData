@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Car));
             this.label5 = new System.Windows.Forms.Label();
             this.idBox = new System.Windows.Forms.CheckBox();
             this.modelBox = new System.Windows.Forms.CheckBox();
@@ -230,6 +231,7 @@
             // 
             // customize
             // 
+            this.customize.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.customize.Location = new System.Drawing.Point(503, 18);
             this.customize.Name = "customize";
             this.customize.Size = new System.Drawing.Size(113, 21);
@@ -410,13 +412,13 @@
             this.mygrid.AllowUserToOrderColumns = true;
             this.mygrid.AllowUserToResizeColumns = false;
             this.mygrid.AllowUserToResizeRows = false;
+            this.mygrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.mygrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.mygrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mygrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.mygrid.Location = new System.Drawing.Point(14, 43);
             this.mygrid.Name = "mygrid";
             this.mygrid.ReadOnly = true;
-            this.mygrid.RowHeadersVisible = false;
-            this.mygrid.ShowEditingIcon = false;
             this.mygrid.Size = new System.Drawing.Size(605, 196);
             this.mygrid.TabIndex = 0;
             this.mygrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.mygrid_CellContentClick);
@@ -426,6 +428,7 @@
             this.AcceptButton = this.add;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.customize;
             this.ClientSize = new System.Drawing.Size(848, 324);
             this.Controls.Add(this.maxBox);
             this.Controls.Add(this.colorBox);
@@ -438,6 +441,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.mygrid);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Car";
             this.Text = "CarData_22013993 EZENWA EMMANUEL";
             this.Load += new System.EventHandler(this.Car_Load_1);
