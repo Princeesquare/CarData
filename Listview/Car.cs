@@ -182,7 +182,7 @@ namespace Cars
         // ADD BUTTON //
         private void add_Click(object sender, EventArgs e)
         {
-
+            
             if (mygrid.Columns[0].Visible == false)
                 MessageBox.Show("Data Column Header is empty\nPlease select a columns and click CUSTOMIZE!!");
             
@@ -248,28 +248,32 @@ namespace Cars
         private void remove_Click(object sender, EventArgs e)
         {
             if (Carsinfo.Count == 0)
-                MessageBox.Show("There is NO Car in The List");
-            else
             {
-                if (MessageBox.Show("Are you Sure You Want To Remove The Selected Car?", "Warning!!",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                {
-                    int index = int.Parse(mygrid.SelectedCells[0].Value.ToString()) - 1;
-                    Carsinfo.RemoveAt(index);
-                    for (int i = index; i < Carsinfo.Count; i++)
-                        Carsinfo[i].ID--;
-                    AutoID--;
-                    MessageBox.Show("Item Deleted Successfully");
-                }
-                else
-                    return;
-                id.Text = AutoID.ToString();
+                MessageBox.Show("There is NO Car in The List");
+                return;
             }
+
+            if (MessageBox.Show("Are you Sure You Want To Remove The Selected Car?", "Warning!!",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+                return;
+
+            int index = int.Parse(mygrid.SelectedCells[0].Value.ToString()) - 1;
+            Carsinfo.RemoveAt(index);
+
+            for (int i = index; i < Carsinfo.Count; i++)
+                Carsinfo[i].ID--;
+
+            AutoID--;
+            id.Text = AutoID.ToString();
+
+            MessageBox.Show("Item Deleted Successfully");
         }
         // FINDING NUMBER OF GEARTYPE BUTTON //
         private void numberof_Click(object sender, EventArgs e)
         {
+            int cnt = 0;
             string carname = "";
+            string geartype = manual.Checked ? "Manual" : "Automatic";
             if (Carsinfo.Count == 0)
                 MessageBox.Show("There is NO Car in The List");
             else
@@ -278,40 +282,22 @@ namespace Cars
                     MessageBox.Show("Select a Gear Type.");
                 else
                 {
-                    int cnt = 0;
-                    if (manual.Checked)
+                    for (int i = 0; i < Carsinfo.Count; i++)
                     {
-                        for (int i = 0; i < Carsinfo.Count; i++)
+                        if ((Carsinfo[i].Gear == geartype))
                         {
-                            if (Carsinfo[i].Gear == "Manual")
-                            {
-                                carname = Carsinfo[i].Model;
-                                cnt++;
-                            }
+                            carname = Carsinfo[i].Model;
+                            cnt++;
                         }
-                        if (cnt == 1)
-                            MessageBox.Show("There is only " + cnt + " Manual Car in the list: " + carname);
-                        else
-                            MessageBox.Show("There are " + cnt + " Manual Cars");
                     }
+                    if (cnt == 1)
+                        MessageBox.Show($"There is only {cnt} {geartype} Car in the list: {carname}");
                     else
-                    {
-                        for (int i = 0; i < Carsinfo.Count; i++)
-                        {
-                            if (Carsinfo[i].Gear == "Automatic")
-                            {
-                                carname = Carsinfo[i].Model;
-                                cnt++;
-                            }
-                        }
-                        if (cnt == 1)
-                            MessageBox.Show("There is only " + cnt + " Automatic Car in the list: " + carname);
-                        else
-                            MessageBox.Show("There are " + cnt + " Automatic Cars");
-                    }
+                        MessageBox.Show($"There are {cnt} {geartype} Cars");
                 }
             }
         }
+   
         // YEAR TEXTBOX KEYPRESS HANDLING //
         private void year_KeyPress(object sender, KeyPressEventArgs e)
         {
